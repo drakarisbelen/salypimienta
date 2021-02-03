@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <%- include('./partials/head.ejs') %>
+    
+  <body>
+    <!-- Navbar (sit on top) -->
+    <%- include('./partials/nav.ejs') %>
+
+    <!-- Header -->
+    <%- include('./partials/header.ejs') %>
+  
+    <!-- Page content -->
+    <div class="ps-content">
+
+      <!-- Menu Section -->
+      <div class="detalle-container">
+        <h2> Detalle del Articulo </h2>
+        <img src="<%= id.img %>" alt="">      
+        <div class="text">
+            <h4 class="detallado"><%= id.name %> </h4><h5 class="price"><%= id.price %> </h5>
+            <h4 class="detallado"> <% id.description == undefined ? 'Plato típico' : id.description %></h4>
+            <p class="ps-text-grey detallado"><%= id.description %> </p>
+        </div>
+    </div>     
+
+      <!-- Footer -->
+      <%- include ("./partials/footer.ejs") %>
+    </div>
+  </body>
+</html>
