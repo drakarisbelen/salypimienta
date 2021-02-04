@@ -5,6 +5,10 @@ const app = express();
 const path = require('path');
 //Session
 const session = require('express-session');
+const auth = require('./middlewares/authMiddleware');
+//para formularios post y get
+app.use(express.urlencoded({extended: false}));
+app.use(express.json());
 
 // Configuración
 const publicPath = path.resolve(__dirname, '../public');
@@ -14,17 +18,32 @@ app.use(express.static(publicPath));
 app.set('views', path.join(__dirname, 'views'));
 app.set("view engine", "ejs");
 
+//sessiones - Consumo aca arriba porque estará disponible para todas las páginas
+app.use(session({secret: 'secreto',
+resave: false,
+saveUnitialized: true}));
 
-//session - Consumo aca arriba porque estará disponible para todas las páginas
-app.use(session({secret: 'secreto'}));
 
+app.use(auth);
 // Rutas
 // Acá falta el archivo de rutas y después las vistas de EJS
 const mainRouter = require("./routes/mainRouter");
 const detailRouter = require("./routes/detailRouter");
+const loginRouter = require("./routes/loginRouter");
+
+
+//middleWares
+const notFoundMiddleware = require("./middlewares/notFoundMiddleware");
+
 
 app.use("/", mainRouter);
 app.use("/detalle" , detailRouter);
+app.use("/login" , loginRouter);
+app.use("/register" , loginRouter);
+
+//app.use(notFoundMiddleware);
+
+
 
 app.get('/', (req, res) => {
     res.send('Servidor funcionando, el resto te toca a vos 😋')

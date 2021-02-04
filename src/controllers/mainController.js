@@ -2,7 +2,7 @@
 const express = require('express');
 const platos = require("../database/dishes.js"); 
 
-console.log("lo platito", platos);
+//console.log("lo platito", platos);
 // Acá nos falta un objeto literal con las acciones para cada ruta
 
 //en este caso lo exporto directamente, pero al terminar probar como seria con el objeto por separado
