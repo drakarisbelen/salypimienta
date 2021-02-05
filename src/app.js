@@ -18,6 +18,10 @@ app.use(express.static(publicPath));
 app.set('views', path.join(__dirname, 'views'));
 app.set("view engine", "ejs");
 
+//PARA PODER UTILZAR EL POST DE LOS FORMS
+app.use(express.urlencoded({ extended: false }));
+
+
 //sessiones - Consumo aca arriba porque estará disponible para todas las páginas
 app.use(session({secret: 'secreto',
 resave: false,

@@ -16,7 +16,7 @@ router.get("/register", loginController.register);
 
 //esta vista recibe lo que envio por POST al "confirmar" registrar
 //Proceso registro
-router.post("/register", loginController.processRegister);
+router.post("/", loginController.processRegister);
 
 //perfil del usuario
 //router.get('/profile/:userID', loginController.profile)
